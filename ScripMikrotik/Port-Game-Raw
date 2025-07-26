@@ -1,0 +1,191 @@
+/ip firewall raw
+add action=add-dst-to-address-list address-list=Speedtest \
+    address-list-timeout=1h chain=prerouting comment=Speedtest content=\
+    speedtest. dst-address-list=!IP-CLIENT dst-port=80,443 protocol=tcp \
+    src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Youtube content=googlevideo. \
+    dst-address-list=!IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=youtube. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=ytimg. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=ggpht. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=googleapis. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=youtubeeducation. dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=youtube-ui. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=youtube-nocookie. dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=youtu. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=gvt1. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=yt. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=youtubekids. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Facebook content=facebook. dst-address-list=\
+    !IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=fbcdn. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=fb. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=fbsbx. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=IP-CLIENTountkit. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=akamaihd. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=tfbnw. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=appspot. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=wechat. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=fbsbx. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=fburl. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=edgesuite. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=edgekey. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=messenger. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=msngr. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=thefacebook. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Instagram content=cdninstagram. \
+    dst-address-list=!IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=instagram. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=ig. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Snackvideo content=snackvideo. \
+    dst-address-list=!IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Detik content=detik. dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Operamini content=opera-mini. \
+    dst-address-list=!IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Twitter content=twitter. dst-address-list=\
+    !IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=twttr. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=twimg. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Blogspot content=blogspot. dst-address-list=\
+    !IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Ads content=ads. dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Bigo content=bigo. dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=bigolive. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Likee content=likee. dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=like-video. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=like. dst-address-list=!IP-CLIENT dst-port=80,443 \
+    protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Tiktok content=tiktokv. disabled=yes \
+    dst-address-list=!IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=tiktokcdn. disabled=yes dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=tiktokcdn-in. disabled=yes dst-address-list=\
+    !IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=ttoversea. disabled=yes dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment="Play Store" content=play.google. \
+    dst-address-list=!IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=play.googleapis. dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=android.clients.google. dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=play-fe.googleapis. dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=play-lh.googleusercontent. dst-address-list=\
+    !IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting comment=Microsoft content=microsoft. \
+    dst-address-list=!IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=windows. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=windowsupdate. dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=azurewebsites. dst-address-list=!IP-CLIENT \
+    dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=azure-mobile. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=cloudapp. dst-address-list=!IP-CLIENT dst-port=\
+    80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Youtube address-list-timeout=\
+    1h chain=prerouting content=microsoftproductionstudios. dst-address-list=\
+    !IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Google address-list-timeout=\
+    1h chain=prerouting comment=Google content=google. disabled=yes \
+    dst-address-list=!IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
+add action=add-dst-to-address-list address-list=Google address-list-timeout=\
+    1h chain=prerouting content=googleusercontent. disabled=yes \
+    dst-address-list=!IP-CLIENT dst-port=80,443 protocol=tcp src-address-list=IP-CLIENT
