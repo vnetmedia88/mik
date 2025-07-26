@@ -1,0 +1,78 @@
+##########################################
+# 🧠 1. Address List: IP Lokal (Private)
+##########################################
+/ip firewall address-list
+add address=10.0.0.0/8 list=LOKAL
+add address=172.16.0.0/12 list=LOKAL
+add address=192.168.0.0/16 list=LOKAL
+
+##########################################
+# 🌐 2. NAT Masquerade untuk keluar internet
+##########################################
+/ip firewall nat
+add action=masquerade chain=srcnat comment="Global NAT Remote AP / Modem" place-before=*0
+
+##########################################
+# 🛣️ 3. Routing Table Manual (untuk PCC di ROS 7)
+##########################################
+/routing table
+add name="ether1" fib
+add name="ether2" fib
+
+##########################################
+# 🌍 4. Recursive Route ke DNS (untuk failover)
+##########################################
+/ip route
+add distance=1 dst-address=1.0.0.1/32 gateway=192.168.1.1 comment="DNS via ISP1"
+add distance=1 dst-address=1.0.0.4/32 gateway=192.168.2.1 comment="DNS via ISP2"
+add check-gateway=ping distance=1 gateway=1.0.0.1 target-scope=30 comment="Main Internet via ISP1"
+add check-gateway=ping distance=2 gateway=1.0.0.4 target-scope=30 comment="Backup Internet via ISP2"
+add check-gateway=ping distance=1 gateway=1.0.0.1 routing-table="ether1" target-scope=30 comment="PCC ISP1"
+add check-gateway=ping distance=1 gateway=1.0.0.4 routing-table="ether2" target-scope=30 comment="PCC ISP2"
+
+##########################################
+# 🧱 5. Mangle Filter untuk menghindari internal traffic kena PCC
+##########################################
+/ip firewall mangle
+add action=accept chain=prerouting comment="PCC" dst-address-list=LOKAL src-address-list=LOKAL
+add action=accept chain=postrouting dst-address-list=LOKAL src-address-list=LOKAL
+add action=accept chain=forward dst-address-list=LOKAL src-address-list=LOKAL
+add action=accept chain=input dst-address-list=LOKAL src-address-list=LOKAL
+add action=accept chain=output dst-address-list=LOKAL src-address-list=LOKAL
+
+##########################################
+# 🔗 6. Mark connection untuk traffic dari ISP masuk ke router (input)
+##########################################
+add action=mark-connection chain=input in-interface="ether1" new-connection-mark="ether1" passthrough=yes
+add action=mark-connection chain=input in-interface="ether2" new-connection-mark="ether2" passthrough=yes
+
+##########################################
+# 🔀 7. Mark routing untuk output dari router ke luar (Router-Originated Traffic)
+##########################################
+add action=mark-routing chain=output connection-mark="ether1" new-routing-mark="ether1" passthrough=yes
+add action=mark-routing chain=output connection-mark="ether2" new-routing-mark="ether2" passthrough=yes
+
+##########################################
+# ⚖️ 8. PCC Load Balancing via Per Connection Classifier
+##########################################
+# PCC untuk ether1 (50% trafik pertama)
+/ip firewall mangle
+add action=mark-connection chain=prerouting dst-address-type=!local \
+    new-connection-mark="ether1" passthrough=yes \
+    per-connection-classifier=both-addresses-and-ports:2/0 \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+
+# PCC untuk ether2 (50% trafik kedua)
+add action=mark-connection chain=prerouting dst-address-type=!local \
+    new-connection-mark="ether2" passthrough=yes \
+    per-connection-classifier=both-addresses-and-ports:2/1 \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+
+##########################################
+# 🧭 9. Tandai routing sesuai koneksi PCC
+##########################################
+add action=mark-routing chain=prerouting connection-mark="ether1" \
+    new-routing-mark="ether1" passthrough=yes dst-address-list=!LOKAL src-address-list=LOKAL
+
+add action=mark-routing chain=prerouting connection-mark="ether2" \
+    new-routing-mark="ether2" passthrough=yes dst-address-list=!LOKAL src-address-list=LOKAL
