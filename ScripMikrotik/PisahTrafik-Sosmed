@@ -1,0 +1,80 @@
+
+/ip firewall address-list;
+add address=192.168.0.0/16 list=LOCAL-IP;
+add address=172.16.0.0/12 list=LOCAL-IP;
+add address=10.0.0.0/8 list=LOCAL-IP;
+/routing/table/add name=SOSMED fib
+
+
+/ip firewall raw
+remove [find address-list="VPN WHATSAPP"]
+add action=add-dst-to-address-list address-list="VPN WHATSAPP" \
+    address-list-timeout=1d chain=prerouting comment="VPN WHATSAPP" content=\
+    .whatsapp.net dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP
+add action=add-dst-to-address-list address-list="VPN WHATSAPP" \
+    address-list-timeout=1d chain=prerouting comment="VPN WHATSAPP" content=\
+    .whatsapp.com dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP
+add action=add-dst-to-address-list address-list="VPN WHATSAPP" \
+    address-list-timeout=10m chain=prerouting comment="VPN WHATSAPP" \
+    dst-address-list=!LOCAL-IP dst-port=\
+    3478,4244,5222,5223,5228,5288,5242,5349,34784,45395,50318,59234 protocol=\
+    tcp src-address-list=LOCAL-IP
+add action=add-dst-to-address-list address-list="VPN WHATSAPP" \
+    address-list-timeout=10m chain=prerouting comment="VPN WHATSAPP" \
+    dst-address-list=!LOCAL-IP dst-port=\
+    3478,4244,5222,5223,5228,5288,5242,5349,34784,45395,50318,59234 protocol=\
+    udp src-address-list=LOCAL-IP
+
+/ip firewall raw;
+remove [find address-list=vpn-sosmed]
+add action=add-dst-to-address-list address-list=vpn-sosmed address-list-timeout=1d chain=prerouting comment=YOUTUBE content=.ytimg.com dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP;
+add action=add-dst-to-address-list address-list=vpn-sosmed address-list-timeout=1d chain=prerouting comment=YOUTUBE content=googlevideo.com dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP;
+add action=add-dst-to-address-list address-list=vpn-sosmed address-list-timeout=1d chain=prerouting comment=TIKTOK content=.tiktok.com dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP;
+add action=add-dst-to-address-list address-list=vpn-sosmed address-list-timeout=1d chain=prerouting comment=TIKTOK content=.tiktokcdn.com dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP;
+add action=add-dst-to-address-list address-list=vpn-sosmed address-list-timeout=1d chain=prerouting comment=INSTAGRAM content=.cdninstagram.com dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP;
+add action=add-dst-to-address-list address-list=vpn-sosmed address-list-timeout=1d chain=prerouting comment=INSTAGRAM content=scontent-sin6-2.cdninstagram.com dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP;
+add action=add-dst-to-address-list address-list=vpn-sosmed address-list-timeout=1d chain=prerouting comment=INSTAGRAM content=.instagram.com dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP;
+add action=add-dst-to-address-list address-list=vpn-sosmed address-list-timeout=1d chain=prerouting comment=FACEBOOK content=.facebook.com dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP;
+add action=add-dst-to-address-list address-list=vpn-sosmed address-list-timeout=1d chain=prerouting comment=FACEBOOK content=.facebook.net dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP;
+add action=add-dst-to-address-list address-list=vpn-sosmed address-list-timeout=1d chain=prerouting comment=FACEBOOK content=.fbcdn.net dst-address-list=!LOCAL-IP src-address-list=LOCAL-IP;
+
+
+
+/ip firewall mangle;
+remove [find new-routing-mark="SOSMED"]
+add action=mark-routing chain=prerouting comment="VPN SOSMED | TARUH PALING ATAS! | by VPN MURAH JOGJA" dst-address-list=vpn-sosmed new-routing-mark="SOSMED" passthrough=no src-address-list=LOCAL-IP;
+remove [find new-routing-mark="VPN WHATSAPP"]
+add action=mark-routing chain=prerouting comment="VPN WHATSAPP | TARUH PALING ATAS! | by VPN MURAH JOGJA" dst-address-list="VPN WHATSAPP" src-address-list="LOCAL-IP" new-routing-mark="SOSMED" passthrough=no;
+/ip firewall mangle move [find new-routing-mark="SOSMED"] destination=0;
+/ip firewall mangle move [find new-routing-mark="VPN WHATSAPP"] destination=0;
+/ip firewall nat;
+add action=masquerade chain=srcnat;
+/ip route;
+add gateway="VPN SOSMED" routing-table=SOSMED;
+add distance=1 gateway="VPN SOSMED" routing-mark="SOSMED";
+add gateway="VPN SOSMED" routing-table="VPN WHATSAPP";
+add distance=1 gateway="VPN SOSMED" routing-mark="VPN WHATSAPP";
+
+
+/ip firewall mangle
+remove [find comment="VPN WHATSAPP"]
+add action=mark-connection chain=forward comment=WHATSAPP dst-address-list=\
+    "VPN WHATSAPP" new-connection-mark=WHATSAPP passthrough=yes \
+    src-address-list=LOCAL-IP out-interface="VPN SOSMED"
+add action=mark-packet chain=forward comment=WHATSAPP connection-mark=\
+    WHATSAPP new-packet-mark=WHATSAPP passthrough=no
+
+
+/queue simple
+remove [find name=.WHATSAPP]
+add max-limit=100M/100M name=.WHATSAPP packet-marks=WHATSAPP \
+    target=192.168.0.0/16,172.16.0.0/12,10.0.0.0/8
+move destination=0 [find name=".WHATSAPP"]
+
+
+/system scheduler remove "VPN WHATSAPP"
+/system scheduler add name="VPN WHATSAPP" interval=2m on-event="/queue simple move [find name=\".WHATSAPP\"] [:pick [find] 0]"
+/tool graphing interface remove [find]
+/tool graphing interface add interface=all
+/tool graphing queue remove [find ]
+/tool graphing queue add simple-queue=all
