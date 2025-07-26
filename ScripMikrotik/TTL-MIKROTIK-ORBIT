@@ -1,0 +1,8 @@
+
+#TTL-DHCP CLIENT/STATIC MODE GSM
+
+/ip firewall mangle
+add chain=postrouting out-interface=ether1 action=change-ttl new-ttl=set:65 passthrough=yes
+
+/ip firewall mangle
+add chain=postrouting out-interface=ether1 action=change-ttl new-ttl=set:65 passthrough=yes
