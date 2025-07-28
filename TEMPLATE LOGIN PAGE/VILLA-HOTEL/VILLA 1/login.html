@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title id="title">Bali Room & Studio</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script type="text/javascript" src="./assets/js/jquery-3.4.1.min.js"></script>
+  <style>
+    /* SLIDER */
+    .slider-container {
+      width: 100%;
+      max-width: 350px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00000055;
+      height: 160px;
+    }
+
+    .slider {
+      display: flex;
+      animation: slide 36s infinite;
+      width: 300%;
+    }
+
+    .slider img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: transform 0.5s;
+      cursor: pointer;
+    }
+
+    .slider img:hover {
+      transform: scale(1.03);
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+
+    .greeting-box {
+      margin: 15px auto;
+      color: white;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .greeting-box span {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="main" class="euronet">
+    <img src="./assets/images/logo.jpg" id="logo" class="logo">
+
+    <div class="box">
+      <h3 class="brand">Bali Room & Studio Login</h3>
+    </div>
+
+    <!-- Greeting Static -->
+    <div class="greeting-box">
+      <span id="greetingIcon"></span>
+      <span id="greetingText"></span>
+    </div>
+
+    <div class="box" id="infologin"></div>
+
+    <!-- Login Form -->
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post">
+      <input type="hidden" name="username" />
+      <input type="hidden" name="password" />
+      <input type="hidden" name="dst" value="$(link-orig)" />
+      <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script type="text/javascript" src="./assets/js/md5.js"></script>
+    <script type="text/javascript">
+      function doLogin() {
+        document.sendin.username.value = document.login.username.value;
+        document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+        document.sendin.submit();
+        return false;
+      }
+    </script>
+    $(endif)
+
+    <form autocomplete="off" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+      <input type="hidden" name="dst" value="$(link-orig)" />
+      <input type="hidden" name="popup" value="true" />
+      <input class="ryan" name="username" placeholder="Username" type="text" value="$(username)" />
+      <input class="rifai" name="password" placeholder="Password" type="password" />
+      <button class="button" type="submit"><i class="icon icon-login">&#xe803;</i> Login</button>
+    </form>
+
+    $(if trial == 'yes')
+    <div class="box">
+      <button class="button" onclick="location.href='$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)'">Coba Gratis</button>
+    </div>
+    $(endif)
+
+    $(if error)
+    <div class="notice">$(error)</div>
+    $(endif)
+
+    <!-- Image Slider -->
+    <div class="slider-container">
+      <div class="slider">
+        <img src="./assets/images/1.png" alt="Kamar Nyaman" title="Kamar Nyaman & Bersih" />
+        <img src="./assets/images/2.png" alt="Studio Modern" title="Studio Modern & Lengkap" />
+        <img src="./assets/images/3.png" alt="Pemandangan Alam" title="Pemandangan Asri & Tenang" />
+        <img src="./assets/images/4.png" alt="Kamar Nyaman" title="Kamar Nyaman & Bersih" />
+        <img src="./assets/images/5.png" alt="Studio Modern" title="Studio Modern & Lengkap" />
+        <img src="./assets/images/6.png" alt="Pemandangan Alam" title="Pemandangan Asri & Tenang" />
+        <img src="./assets/images/7.png" alt="Kamar Nyaman" title="Kamar Nyaman & Bersih" />
+      </div>
+    </div>
+
+    <div class="footer">
+      Bali Room & Studio<br> contact us : 0812345678<br>
+      <a id="euro" class="euro" href="https://www.facebook.com/vmobilez"></a>
+    </div>
+  </div>
+
+  <script>
+    // Greeting waktu
+    const jam = new Date().getHours();
+    let greeting = "", icon = "";
+
+    if (jam >= 5 && jam < 11) {
+      greeting = "Good Morning!";
+      icon = "☀️";
+    } else if (jam >= 11 && jam < 15) {
+      greeting = "Good Afternoon!";
+      icon = "🌞";
+    } else if (jam >= 15 && jam < 18) {
+      greeting = "Good Evening!";
+      icon = "🌇";
+    } else {
+      greeting = "Good Night!";
+      icon = "🌙";
+    }
+
+    document.getElementById("greetingIcon").textContent = icon;
+    document.getElementById("greetingText").textContent = greeting;
+  </script>
+
+  <script type="text/javascript">
+    function member() {
+      username.focus();
+      username.onkeyup = "";
+      username.placeholder = "Username";
+      username.style = "border-radius:8px 8px 0px 0px;"
+      password.type = "password";
+      infologin.innerHTML = "Masukkan Username dan Password<br>kemudian klik login.";
+    }
+  </script>
+</body>
+</html>

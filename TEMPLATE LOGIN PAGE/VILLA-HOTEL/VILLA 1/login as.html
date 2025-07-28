@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title id="title">Santun Homestay Hotspot</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script type="text/javascript" src="./assets/js/jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+  	<div id="main" class="euronet">
+    <img src="./assets/images/logo.jpg" id="logo" class="logo">
+      <div class="box">
+               <h3 class="brand">Santun Homestay Login</h3>
+      </div>
+	  <marquee width="100%" bgcolor="transparent" scrollamount="2">
+<span style="color:white;">
+
+<!--RUNNING TEXT-->
+<strong>Welcome to Santun Homestay</strong>
+</span>
+</marquee>
+      <div class="box">
+        </div>
+        <div class="box" id="infologin"></div>
+  $(if chap-id)
+        <form name="sendin" action="$(link-login-only)" method="post">
+            <input type="hidden" name="username" />
+            <input type="hidden" name="password" />
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+        </form>
+
+        <script type="text/javascript" src="./assets/js/md5.js"></script>
+        <script type="text/javascript">
+	<!--
+	    function doLogin() {
+		document.sendin.username.value = document.login.username.value;
+		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+		document.sendin.submit();
+		return false;
+	    }
+	//-->
+	</script>
+$(endif)
+          <form autocomplete="off" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()"
+                $(endif)>
+                <input type="hidden" name="dst" value="$(link-orig)" />
+                <input type="hidden" name="popup" value="true" />
+<input class="ryan"name="username" placeholder="Username" type="text" value="$(username)"  />
+<input class="rifai" name="password" placeholder="Password" type="password" label="false"  />
+               <input type="hidden" name="dst" value="$(link-orig)" />
+                <input type="hidden" name="popup" value="true" />
+                <button class="button" type="submit"><i class="icon icon-login">&#xe803;</i> Login</button>
+          </form>
+
+            $(if trial == 'yes')
+        <div class="box">			
+			            	<button class="button" onclick="location.href='$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)'">Coba Gratis</button>
+		    	</div>
+            $(endif)
+
+            $(if error)
+        <div class="notice">
+        	   $(error)
+        </div>
+            $(endif)
+
+     <div class="footer">
+          Santun Homestay <br> contact us : 0821-4460-0234<br>
+				      <a id="euro" class="euro" href="https://www.facebook.com/vmobilez"></a>
+     </div>
+   </div>
+        <br />
+
+<script type="text/javascript">
+
+
+
+
+function member() {
+    username.focus();
+    username.onkeyup = "";
+    username.placeholder = "Username";
+    username.style = "border-radius:8px 8px 0px 0px;"
+    password.type = "passwordd";
+    infologin.innerHTML = "Masukkan Username dan Password<br>kemudian klik login.";
+}
+</script>
+  </body>
+</html>
