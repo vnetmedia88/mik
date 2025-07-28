@@ -1,0 +1,22 @@
+# Reset dan konfigurasi ulang bridge VLAN-aware
+/system reset-configuration no-defaults=yes
+# Tunggu reboot, login ulang, lalu apply konfigurasi berikut:
+
+/interface bridge
+add name=bridge-vlan vlan-filtering=yes
+
+/interface bridge port
+add bridge=bridge-vlan interface=ether1
+add bridge=bridge-vlan interface=ether2
+add bridge=bridge-vlan interface=ether3
+add bridge=bridge-vlan interface=ether4
+add bridge=bridge-vlan interface=ether5
+
+/interface bridge vlan
+add bridge=bridge-vlan vlan-ids=10 tagged=ether3 untagged=ether1
+add bridge=bridge-vlan vlan-ids=20 tagged=ether3 untagged=ether2
+add bridge=bridge-vlan vlan-ids=100 tagged=ether3 untagged=ether4
+add bridge=bridge-vlan vlan-ids=200 tagged=ether3 untagged=ether5
+
+/ip address
+add address=192.168.99.1/24 interface=bridge-vlan
