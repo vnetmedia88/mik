@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="theme-color" content="#1FA2FF" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="bg">
+        $(if chap-id)
+        <form name="sendin" action="$(link-login-only)" method="post">
+            <input type="hidden" name="username" />
+            <input type="hidden" name="password" />
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+        </form>
+        <script type="text/javascript" src="md5.js"></script>
+        <script type="text/javascript">
+            function doLogin() {
+                document.sendin.username.value = document.login.username.value;
+                document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+                document.sendin.submit();
+                return false;
+            }
+        </script>
+        $(endif)
+
+        <div id="main" class="main">
+            <div class="container">
+                <div class="box">
+                    <img src="img/logo.png" alt="kemangi 41" style="border-radius: 5px; width:200px; height:auto;" />
+                </div>
+
+                <div class="box">
+                    <button id="btnvrc" class="small-button1" onclick="voucher();"><i class="icon icon-ticket">&#xe802;</i> Voucher</button>
+                    <button id="btnmem" class="small-button2" onclick="member();"><i class="icon icon-user-circle-o">&#xf2be;</i> Member</button>
+                    <button id="qr" class="small-button3" onclick="window.location='https://laksa19.github.io/myqr';"> <i class="icon icon-qrcode">&#xe801;</i> QR Code</button>
+                </div>
+
+                <div class="box" id="infologin"></div>
+
+                <form autocomplete="off" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+                    <input type="hidden" name="dst" value="$(link-orig)" />
+                    <input type="hidden" name="popup" value="true" />
+                    <input class="username" name="username" type="text" />
+                    <input class="password" name="password" placeholder="Password" type="hidden" />
+                    $(if error)<div class="notice">$(error)</div>$(endif)
+                    <button class="button" type="submit"><i class="icon icon-login">&#xe803;</i> Login</button>
+                </form>
+
+                $(if trial == 'yes')
+                <div class="box">Coba gratis <a style="text-decoration: underline; color:#000;" href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">klik di sini</a></div>
+                $(endif)
+
+                <table class="table table-bordered animated zoomIn" border="0">
+                    <thead>
+                        <tr>
+                            <th class="text-center">PAKET</th>
+                            <th class="text-center">HARGA</th>
+                            <th class="text-center">KUOTA</th>
+                        </tr>
+                    </thead>
+                    <tbody align="center">
+                        <tr><td>24 jam</td><td>5.000</td><td>Unlimited</td></tr>
+                        <tr><td>7 Hari</td><td>20.000</td><td>Unlimited</td></tr>
+                        <tr><td>30 hari</td><td>100.000</td><td>Unlimited</td></tr>
+                    </tbody>
+                </table>
+
+                <marquee>Untuk Bisa Terhubung Ke Internet Silahkan Masukan Voucher Anda Terimakasih</marquee>
+                <div>Beli Voucher</div>
+                <div>CS : 0882-1510-8530</div>
+            </div>
+        </div>
+
+        <br />
+        <div class="box" style="color:#000;">
+            <i>Copyright &copy; 2019</i><br />
+            <i>Powered by </i><a id="mikhmon" style="color:#000; text-decoration:underline; display:block" href="https://laksa19.github.io">Mikhmon</a>
+        </div>
+    </div>
+
+    <script>
+        window.onscroll = function () { scrollFunction(); };
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("navbar").style.top = "0";
+            } else {
+                document.getElementById("navbar").style.top = "-50px";
+            }
+        }
+
+        var hostname = window.location.hostname;
+        document.getElementById('title').innerHTML = hostname + " > login";
+
+        document.login.username.focus();
+
+        var config = {
+            loginvc: "Masukkan Kode Voucher kemudian klik login.",
+            loginup: "Masukkan Username dan Password <br> kemudian klik login.",
+            voucherCode: "Kode Voucher",
+            setCase: "false",
+            defaultMode: "voucher"
+        };
+
+        var infologin = document.getElementById("infologin");
+        infologin.innerHTML = config.loginvc;
+
+        var mikhmon = document.getElementById("mikhmon").innerHTML;
+        var username = document.login.username;
+        var password = document.login.password;
+
+        username.placeholder = config.voucherCode;
+
+        function setpass() {
+            var val = username.value;
+            if (config.setCase == "lowercase") {
+                username.value = val.toLowerCase();
+                password.value = val.toLowerCase();
+            } else if (config.setCase == "uppercase") {
+                username.value = val.toUpperCase();
+                password.value = val.toUpperCase();
+            } else {
+                password.value = val;
+            }
+        }
+
+        function setuplowmem() {
+            var val = username.value;
+            if (config.setCase == "lowercase") {
+                username.value = val.toLowerCase();
+            } else if (config.setCase == "uppercase") {
+                username.value = val.toUpperCase();
+            }
+        }
+
+        username.onkeyup = setpass;
+
+        function voucher() {
+            username.focus();
+            username.onkeyup = setpass;
+            username.placeholder = config.voucherCode;
+            password.type = "hidden";
+            infologin.innerHTML = config.loginvc;
+        }
+
+        function member() {
+            username.focus();
+            username.onkeyup = setuplowmem;
+            username.placeholder = "Username";
+            password.type = "password";
+            infologin.innerHTML = config.loginup;
+        }
+
+        if (config.defaultMode == "member") {
+            window.onload = member();
+        }
+
+        function Id(id) {
+            var el = document.querySelectorAll("[id^=" + id + "]");
+            if (el) {
+                for (var i = 0; i < el.length; i++) {
+                    el[i].style.display = "block";
+                    el[i].style.color = "#000";
+                }
+            }
+        }
+
+        Id("yark");
+    </script>
+
+    <!-- jQuery dan background -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.backstretch.js"></script>
+    <script>
+        $(window).load(function () {
+            $('#ModalVoucher').modal('');
+        });
+
+        $.backstretch(["img/bg.jpg"]);
+    </script>
+
+    <!-- ✅ Tambahan: Auto Login dari URL ?login=USERNAME -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const loginParam = urlParams.get('login');
+
+            if (loginParam) {
+                const usernameInput = document.login.username;
+                const passwordInput = document.login.password;
+
+                usernameInput.value = loginParam;
+                passwordInput.value = loginParam; // voucher mode
+
+                // Mode voucher
+                usernameInput.placeholder = config.voucherCode;
+                infologin.innerHTML = config.loginvc;
+                passwordInput.type = "hidden";
+
+                // Jika CHAP aktif, pakai doLogin()
+                if (typeof doLogin === 'function') {
+                    doLogin();
+                } else {
+                    document.login.submit();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

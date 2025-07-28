@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title id="title"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="theme-color" content="#1FA2FF" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/effects.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/blink.css">
+$(if refresh-timeout)
+<script>
+	setTimeout(function(){
+	location.href = './status';
+	},4000)
+</script>
+$(endif)
+</head>
+<body>
+<div class="main">
+<div class="container">
+<div class="box">
+    <img src="img/mantap.png" style=" width: 100%; height:auto;margin-bottom; 1px"/>
+    <div class="blink" style="margin-top:1px; text-align: center; color:#DC143C;">
+     MANTAP NDAN
+	</div><br>
+</div>
+<h3>SELAMAT <br> Anda telah terhubung di jaringan <br /><b id="dname"></b></h3>
+<button class="button" onclick="window.location='./status'"><i class="icon icon-check">&#xe807;</i> Check Status</buton>
+</div>
+</div>
+<style>
+iframe {float:left; height:22px; width:100%;}
+</style>
+<script type="text/javascript">
+	document.getElementById('title').innerHTML = window.location.hostname + " > success";	
+    document.getElementById('dname').innerHTML = window.location.hostname;	
+</script>
+</body>
+</html>
