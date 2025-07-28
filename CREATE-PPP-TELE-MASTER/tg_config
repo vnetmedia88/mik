@@ -1,0 +1,17 @@
+
+
+######################################
+# Common parameters
+######################################
+
+:local config {
+"Command"="telegram";
+	"botAPI"="TOKEN";
+	"defaultChatID"="CHAT-ID";
+	"trusted"="CHAT-ID, -xxxxxxxxx";
+	"storage"="";
+	"timeout"=5;
+	"refresh_active"=15;
+	"refresh_standby"=300;
+}
+return $config

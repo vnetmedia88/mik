@@ -1,0 +1,36 @@
+:local send [:parse [/system script get tg_sendMessage source]]
+:local param1 [:pick $params 0 [:find $params " "]]
+:local param2 [:pick $params ([:find $params " "]+1) [:len $params]]
+:local param3 [:pick [:pick $params ([:find $params " "]+1) [:len $params]] ([:find [:pick $params ([:find $params " "]+1) [:len $params]] " "]+1) [:len [:pick $params ([:find $params " "]+1) [:len $params]]]]
+:if ([:len [:find $param2 " "]]>0) do={
+	:set param2 [:pick [:pick $params ([:find $params " "]+1) [:len $params]] 0 [:find [:pick $params ([:find $params " "]+1) [:len $params]] " "]]
+} else={
+	:set param3 ""
+}
+:local datetime "$[/system clock get date] $[/system clock get time]"
+:put $params
+:put $param1
+:put $param2
+:put $param3
+:put $param4
+:put $chatid
+:put $from
+
+:if ($param1="disable") do={ 
+/ppp active remove [find name=$param2] 
+/ppp secret disable [find name=$param2] 
+$send chat=$chatid text=("âŒRAAS USER DISABLE âŒ%0A=====================%0AðŸ“† :_$datetime_%0A=====================%0AðŸ‘¤- User : $param2 %0A âŒ - Status : Disable %0A=====================%0AðŸ‘ðŸ‘Berhasil DISABLE BOZZ...")  mode="Markdown" 
+} 
+:if ($param1="enable") do={ 
+/ppp secret enable [find name=$param2] 
+$send chat=$chatid text=("âœ…RAAS USER ENABLE ðŸ™‹%0A=====================%0AðŸ“† :_$datetime_%0A=====================%0AðŸ‘¤- User : $param2 %0Aâœ… - Status : Enable%0A=====================%0AðŸ‘‰ Note : jika internet belum aktiv%0A ON/OFF kan modem di lokasi user...")  mode="Markdown" 
+}
+:if ($param1="sapu") do={ 
+/ppp secret remove [find name=$param2] 
+$send chat=$chatid text=("ðŸš®RAAS USER SAPU BERSIH %0A=====================%0AðŸ“† :_$datetime_%0A=====================%0AðŸ‘¤- User : $param2 %0AðŸš® - Status :SAPU BERSIH%0A=====================%0AðŸ‘‰ Note : SUDAH MASUK SAMPAH...")  mode="Markdown" 
+} 
+:if ($param1="ganti") do={
+  /ppp active remove [find name=$param2]
+  /ppp secret set [find name=$param2] profile=$param3
+  $send chat=$chatid text=("ðŸ”„RAAS USER GANTI PROFILE %0A=====================%0AðŸ“† :_$datetime_%0A=====================%0AðŸ‘¤- User : $param2 %0AðŸŒ€ - Profile Baru : $param3%0A=====================%0Aâœ…âœ…Berhasil GANTI PROFILE BOZZ...%0AðŸ‘‰ Note: user telah di-kick agar profile baru aktif...") mode="Markdown"
+}

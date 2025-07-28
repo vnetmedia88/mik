@@ -1,0 +1,30 @@
+# Script: tg_cmd_ubahprofile
+
+:local send [:parse [/system script get tg_sendMessage source]]
+:local datetime "ðŸ“… -Tgl:$[/system clock get date] %0Aâ° -Jam:$[/system clock get time]"
+
+# Ambil param1 = username
+:local param1 [:pick $params 0 [:find $params " "]]
+
+# Ambil param2 = profile baru
+:local param2 [:pick $params ([:find $params " "]+1) [:len $params]]
+
+# Cek apakah user ada
+:local id [/ppp secret find where name=$param1]
+
+:if ([:len $id] > 0) do={
+
+    # Ganti profile user
+    /ppp secret set $id profile=$param2
+
+    # Hapus sesi aktif agar reconnect dengan profil baru
+    :local activeId [/ppp active find where name=$param1]
+    :if ([:len $activeId] > 0) do={
+        /ppp active remove $activeId
+    }
+
+    $send chat=$chatid text=("ðŸ‘¤ *UBAH PROFILE USER* %0A=====================%0A_$datetime_%0A-----------------------------------%0AðŸ‘¤ User: $param1%0AðŸ‘‰ *Profile Baru*: $param2%0A=====================%0Aâœ… Alhamdulillah ðŸ¤²ðŸ¤² Berhasil auto direfresh!") mode="Markdown"
+
+} else={
+    $send chat=$chatid text=("âŒ *GAGAL UBAH PROFILE* %0A=====================%0A_$datetime_%0A-----------------------------------%0AðŸ‘¤ *User:* $param1 tidak ditemukan%0A=====================%0A Gagal maning son Ubah Profile! Mungin nama salah bro") mode="Markdown"
+}

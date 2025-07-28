@@ -1,0 +1,44 @@
+:local send [:parse [/system script get tg_sendMessage source]]
+
+:put $params
+:put $chatid
+:put $from
+
+:local text "Router ID:* $[/system identity get name] * %0A\
+==================%0A\
+*MENU TERSEDIA*%0A\
+==================%0A\
+PAKET1%0A\
+PAKET2%0A\
+PAKET3%0A\
+PAKET4%0A\
+ISOLIR%0A\
+==================%0A\
+*BUAT USER*%0A\
+/create user pass profile comment%0A\
+--------------------------------------%0A\
+*DISABLE USER*%0A\
+/ppp disable user%0A\
+--------------------------------------%0A\
+*ENABLE USER*%0A\
+/ppp enable user%0A\
+--------------------------------------%0A\
+*HAPUS USER*%0A\
+/ppp sapu user%0A\
+--------------------------------------%0A\
+/start%0A\
+/create%0A\
+/ppp%0A\
+/ubah%0A\
+/public%0A\
+/cpu%0A\
+/pingGoogle%0A\
+/pingCloudflare%0A\
+--------------------------------------%0A\
+BOT BY VNET-MEDIA %0A\
+https://vnetnetwork.my.id%0A\
+--------------------------------------%0A\
+"
+
+$send chat=$chatid text=$text mode="Markdown"
+:return true

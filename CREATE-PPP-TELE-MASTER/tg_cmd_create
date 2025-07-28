@@ -1,0 +1,33 @@
+:local send [:parse [/system script get tg_sendMessage source]]
+:local datetime "ðŸ“… Tgl:$[/system clock get date] %0A â° Jam:$[/system clock get time]"
+
+# Ambil param1 = nama
+:local param1 [:pick $params 0 [:find $params " "]]
+
+# Ambil sisa setelah nama
+:local sisa [:pick $params ([:find $params " "]+1) [:len $params]]
+
+# Ambil param2 = password
+:local param2 [:pick $sisa 0 [:find $sisa " "]]
+
+# Ambil sisa setelah password
+:set sisa [:pick $sisa ([:find $sisa " "]+1) [:len $sisa]]
+
+# Ambil param3 = profile
+:local param3 [:pick $sisa 0 [:find $sisa " "]]
+
+# Ambil sisa setelah profile sebagai param4 = comment (bisa mengandung spasi)
+:local param4 [:pick $sisa ([:find $sisa " "]+1) [:len $sisa]]
+
+# Debug (hapus saat produksi)
+:put "Nama: $param1"
+:put "Pass: $param2"
+:put "Profile: $param3"
+:put "Comment: $param4"
+
+
+
+# Buat user baru
+/ppp secret add name=$param1 password=$param2 service=pppoe profile=$param3 comment=$param4
+$send chat=$chatid text=(" âœ…RAAS USER BARUâœ…%0A=====================%0A _$datetime_%0A-----------------------------------%0A*Berikut User anda*%0AðŸ†” *-User *: $param1 %0AðŸ” *-Pass* : $param2 %0AðŸŒ *-Service*:pppoe%0AðŸ”‘ *-Vlan ID*: 100%0A-----------------------------------%0AðŸ‘‰*Profile:*$param3%0AðŸ‘‰ *-INFO* : $param4%0A=====================%0AðŸ‘‰*INTERNET BELUM ON*â‰ï¸%0A*SOLUSI*ðŸ‘‡ðŸ‘‡ðŸ‘‡%0Aâœ… Restart Modem%0Aâœ… Cek User,Pass,Vlan %0Aâœ… Cek Redaman RX/TX Modem%0A-%0ASELAMAT BERTUGAS%0AGOODLUCKðŸ’ª%0A=====================%0Aâž–âž–Binet-Wifiâž–âž–%0A=====================") mode="Markdown"
+
