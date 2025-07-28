@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title id="title"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="theme-color" content="#1FA2FF"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style2.css">
+<script type="text/javascript" src="script/soundmanager.js"></script>
+<script src="script/bar-ui.js"></script>
+<link rel="stylesheet" href="css/bar-ui.css"/>
+<link rel="stylesheet" type="text/css" href="engine1/style.css"/>
+<script type="text/javascript" src="engine1/jquery.js"></script>
+</head>
+<body>
+<div class="bg">
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post">
+        <input type="hidden" name="username"/>
+        <input type="hidden" name="password"/>
+        <input type="hidden" name="dst" value="$(link-orig)"/>
+        <input type="hidden" name="popup" value="true"/>
+    </form>
+    <script type="text/javascript" src="md5.js"></script>
+    <script type="text/javascript">
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+
+    <div id="main" class="main">
+        <div class="container">
+            <div class="box">
+
+
+
+
+<!-- Ganti bagian marquee ini -->
+<div class="box" style="margin-top: 10px; color: white; font-size: 18px;">
+  <span id="greetingIcon" style="font-size: 24px;"></span>
+  <span id="greetingText" style="margin-left: 10px;"></span>
+</div>
+
+<script>
+  const jam = new Date().getHours();
+  let greeting = "";
+  let icon = "";
+
+  if (jam >= 5 && jam < 11) {
+    greeting = "Good Morning! Welcome to ";
+    icon = "☀️";
+  } else if (jam >= 11 && jam < 15) {
+    greeting = "Good Afternoon! Welcome to ";
+    icon = "🌞";
+  } else if (jam >= 15 && jam < 18) {
+    greeting = "Good Evening! Welcome to";
+    icon = "🌇";
+  } else {
+    greeting = "Good Night! Welcome to";
+    icon = "🌙";
+  }
+
+  document.getElementById("greetingIcon").textContent = icon;
+  document.getElementById("greetingText").textContent = greeting;
+</script>
+
+<div style="text-align:center; padding: 10px; color: white; text-shadow: 1px 1px 3px black;">
+  <div style="font-size: 25px; font-weight: bold;">Bali Room & Studio</div>
+
+</div>
+                <center><h1><a style="font-size:12px;color:white;">login access to connect the internet</a><h1></center>
+            </div>
+
+            <div class="box" id="infologin"></div>
+
+
+            <form autocomplete="off" name="login" action="$(link-login-only)" method="post" $(if chap-id) onsubmit="return doLogin()" $(endif)>
+                <input type="hidden" name="dst" value="$(link-orig)"/>
+                <input type="hidden" name="popup" value="true"/>
+                <input class="username" name="username" type="text" placeholder="Username" required/>
+                <input class="password" name="password" type="password" placeholder="Password" required/>
+                $(if error)
+                <div class="notice">$(error)</div>
+                $(endif)
+               <button class="button" type="submit">
+  &#10148; Login
+</button>
+
+            </form>
+
+            $(if trial == 'yes')
+            <div class="box">
+                Coba gratis <a style="text-decoration: underline; color:#000;" href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">klik di sini</a>
+            </div>
+            $(endif)
+
+
+            <!-- Start WOWSlider.com BODY section -->
+            <div id="wowslider-container1">
+                <div class="ws_images">
+                    <ul>
+                        <li><img src="data1/images/1.jpg" alt="vnetmedia" title="Bali Room Studio" /></li>
+                        <li><img src="data1/images/2.jpg" alt="vnetmedia" title="Bali Room Studio" /></li>
+                        <li><img src="data1/images/3.jpg" alt="vnetmedia" title="Bali Room Studio" /></li>
+                        <li><img src="data1/images/4.jpg" alt="vnetmediaT" title="Bali Room Studio" /></li>
+                    </ul>
+                </div>
+                <div class="ws_bullets">
+                    <div>
+                        <a href="#"><span><img src="data1/tooltips/1.jpg" alt="vnetmedia1"/>1</span></a>
+                        <a href="#"><span><img src="data1/tooltips/2.jpg" alt="vnetmedia"/>2</span></a>
+                        <a href="#"><span><img src="data1/tooltips/3.jpg" alt="vnetmedia"/>3</span></a>
+                        <a href="#"><span><img src="data1/tooltips/4.jpg" alt="vnetmedia"/>4</span></a>
+                    </div>
+                </div>
+                <div class="ws_shadow"></div>
+            </div>
+            <script type="text/javascript" src="engine1/wowslider.js"></script>
+            <script type="text/javascript" src="engine1/script.js"></script>
+            <!-- End WOWSlider.com BODY section -->
+<div style="text-align:center; color:white; padding:15px 10px; font-size:14px;">
+  <div style="font-size: 15px; font-weight: bold;">Bali Room & Studio</div>
+  <div>Jl. Gn. Tangkuban Perahu Gg. Merta Sedana No.18,</div>
+  <div>📞 0857-3000-6572</div>
+</div>
+          
+        </div>
+    </div>
+
+    <br/>
+    <center>
+        <div class="box" style="color:white;font-size: 10px;">
+           
+            <a id="mikhmon" style="color:green; font-size: 0px; text-decoration:underline; display:block" href="">Mikhmon</a>
+        </div>
+    </center>
+</div>
+
+<script>
+window.onscroll = function() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("navbar").style.top = "0";
+    } else {
+        document.getElementById("navbar").style.top = "-50px";
+    }
+};
+
+var hostname = window.location.hostname;
+document.getElementById('title').innerHTML = hostname + " > login";
+document.login.username.focus();
+</script>
+
+  <style>
+    body {
+      background-image: url('img/bg.jpg'); /* ganti dengan path gambar kamu */
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+  </style>
+</body>
+</html>
