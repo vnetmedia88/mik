@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+  <style>
+ body {
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", Verdana, Roboto, "helvetica neue", Arial, sans-serif, "apple color emoji";
+  font-size: 14px; 
+  margin: 0;
+   background: #451c21;
+}
+
+@font-face {
+  font-family: 'fontello';
+  src: url('./font/fontello.eot?78273339');
+  src: url('./font/fontello.eot?78273339#iefix') format('embedded-opentype'),
+       url('./font/fontello.woff?78273339') format('woff'),
+       url('./font/fontello.ttf?78273339') format('truetype'),
+       url('./font/fontello.svg?78273339#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+ 
+.icon
+{
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: .2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+.main{
+  background: #0f0f0f;
+  color: #fff;
+  max-width: 300px;
+  height: 100%;
+  border-radius:10px;
+  border-style: solid;
+  border-color: #f2f2f2;
+  padding: 10px;
+  margin-top: 10%;
+  margin-left:auto;
+  margin-right:auto;
+  transition: 0.3s;
+  text-align:center;
+  min-height:300px;
+  animation: fadein 1s;
+  -moz-animation: fadein 1s; /* Firefox */
+  -webkit-animation: fadein 1s; /* Safari and Chrome */
+  -o-animation: fadein 1s; /* Opera */
+}
+
+.box{
+  margin-bottom:10px;
+  text-align:center;
+}
+
+.brand{
+  color:#000000;
+  padding:0px;
+  margin:10px;
+  font-size:35px;
+  border-bottom: solid 2px #000;
+}
+
+.username {
+  background-color: #FDFBFB;
+  border: none;
+  border-radius:3px;
+  border-bottom: 1px solid #f2f2f2;
+  text-align:center;
+  font-size: 16px;
+  color: #000000;
+  outline: none;
+  width: 98%;
+  height: 35px;
+}
+
+.password {
+  background-color: #FDFBFB;
+  border: none;
+  border-radius:0px 0px 3px 3px;
+  border-top: 1px solid #f2f2f2;
+  text-align:center;
+  font-size: 16px;
+  color: #000000;
+  outline: none;
+  width: 98%;
+  height: 35px;
+}
+
+.button {
+  background-color: #e36d3f;
+  background-image: linear-gradient(#e36d3f, #e36d3f, #e36d3f);
+  border: none;
+  border-radius:3px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+}
+.button:hover{
+  font-weight:bold;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.button2 {
+  background-color: #d32f2f;
+  background-image: linear-gradient(#d32f2f, #d32f2f, #d32f2f);
+  border: none;
+  border-radius:3px;
+  color: #f2f2f2;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+}
+.button2:hover{
+  font-weight:bold;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+.small-button {
+  background-color: #e36d3f;
+  background-image: linear-gradient(#e36d3f, #e36d3f, #e36d3f);
+  border: none;
+  border-radius:3px;
+  color: #FFF;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  height: 30px;
+  width : 49%;
+}
+
+.notice{
+  background-color:#D62B4D;
+  border-radius:6px;
+  padding:5px;
+  margin-bottom:10px;
+  font-size:14px;
+  color: #fff;
+}
+
+.teksjalan{
+  color: #e36d3f;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse !important;
+}
+.table td,
+.table th {
+  padding: 5px;
+  border: 1px solid #f2f2f2 !important;
+  color:  #fff;
+}
+
+.table td, th, a{
+  color: #fff;
+  text-decoration: none;
+}
+
+.table2 {
+  width: 100%;
+  border-collapse: collapse !important;
+  background-color: #fff;
+  text-align:left;
+}
+.table2 td,
+.table2 th {
+  padding: 5px;
+  border: 1px solid #000 !important;
+}
+
+.table2 td, th, a{
+  color: #000;
+  text-decoration: none;
+}
+
+@keyframes fadein {
+  from {opacity:0;}
+  to {opacity: 1;}
+}
+@-moz-keyframes fadein { /* Firefox */
+  from {opacity:0;}
+  to {opacity: 1;}
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+  from {opacity:0;}
+  to {opacity: 1;}
+}
+@-o-keyframes fadein { /* Opera */
+  from {opacity:0;}
+  to {opacity: 1;}
+}
+
+/* @media */
+@media screen and (max-width: 600px) {
+  .main{
+	width:90%;
+    margin-top: 10%;
+}}
+
+/* @media */
+@media screen and (min-width: 600px) {
+  .main{
+	margin-top: 2%;
+}}
+</style>
+
+</head>
+
+<body>
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script type="text/javascript" src="md5.js"></script>
+    <script type="text/javascript">
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value +
+                '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+
+    <div id="main" class="main">
+        <div class="box">
+            <img src="logo-omdrak.png" alt="Logo" style="width:100%;  height:auto;" />
+            <marquee class="teksjalan">Selamat datang di jaringan hotspot Nyiur.Net, The Network You Want!</marquee>
+        </div>
+        <div class="box">
+            <button id="btnvrc" class="small-button" onclick="voucher();"><i class="icon icon-ticket">&#xe802;</i> Voucher</button>
+            <button id="btnmem" class="small-button" onclick="member();"><i class="icon icon-user-circle-o">&#xf2be;</i> Member</button>
+        </div>
+        <div class="box" id="infologin"></div>
+
+        <form autocomplete="off" name="login" action="$(link-login-only)" method="post" $(if chap-id)
+            onSubmit="return doLogin()" $(endif)>
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+            <input class="username" name="username" type="text" value="$(username)" />
+            <input class="password" name="password" placeholder="Password" type="hidden" />
+            <button class="button" type="submit"><i class="icon icon-login">&#xe803;</i> Login</button>
+        </form>
+
+        $(if trial == 'yes')
+        <div class="box">Coba gratis <a style="text-decoration: underline; color:#e36d3f;"
+                href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">klik di sini</a></div>
+        $(endif)
+
+        $(if error)<div class="notice">$(error)</div>$(endif)
+
+        <table class="table">
+            <caption style="font-size: 16px; font-weight: bold;">Paket Internet WiFi</caption>
+            <tr>
+                <th>Paket</th>
+                <th>Aktif</th>
+                <th>Harga</th>
+            </tr>
+            <tr>
+                <td>2 jam</td>
+                <td>2 Jam</td>
+                <td>Rp 2.000</td>
+            </tr>
+            <tr>
+                <td>6 jam</td>
+                <td>6 jam</td>
+                <td>Rp 6.000</td>
+            </tr>
+                <td>24 jam</td>
+                <td>24 jam</td>
+                <td>Rp 10.000</td>
+            </tr>
+        </table>
+        <br />
+        <div>
+                  <!-- Teks Informasi -->
+<h2 style="color: yellow;">
+  Hubungi via WhatsApp di nomor berikut:
+</h2>
+
+<h2 style="color: yellow;">
+  <a href="https://wa.me/628233000742?text=Halo,%20saya%20mau%20beli%20voucher%20wifi"
+     style="color: yellow; text-decoration: underline;"
+     target="_blank">
+    082 333 000 742
+  </a>
+</h2>
+             
+        </div>
+<!-- Tombol WhatsApp Melayang di Pojok Kanan Bawah -->
+<a href="https://wa.me/6281337430073?text=Halo%20admin%20saya%20butuh%20voucher%20wifi"
+   target="_blank"
+   style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+   <img src="wa.png"
+        alt="Chat via WhatsApp"
+        style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+</a>
+
+
+    </div>
+    <br />
+    <div class="box" style="color:#000;">
+        <i>Copyright &copy; 2025 nyiur.net</i><br />
+        <i>Powered by <a style="color:#000; text-decoration:underline;" href="https://laksa19.github.io">Mikhmon</a></i>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        var hostname = window.location.hostname;
+        document.getElementById('title').innerHTML = hostname + " > login";
+
+        document.login.username.focus();
+
+        var infologin = document.getElementById('infologin');
+        infologin.innerHTML = "Masukkan Kode Voucher<br>kemudian klik login.";
+
+        // login page 2 mode by Laksamadi Guko
+        var username = document.login.username;
+        var password = document.login.password;
+
+        username.placeholder = "Kode Voucher";
+
+        function setpass() {
+            var user = username.value
+            username.value = user;
+            password.value = user;
+        }
+
+        username.onkeyup = setpass;
+
+        function voucher() {
+            username.focus();
+            username.onkeyup = setpass;
+            username.placeholder = "Kode Voucher";
+            username.style = "border-radius:3px;"
+            password.type = "hidden";
+            infologin.innerHTML = "Masukkan Kode Voucher<br>kemudian klik login.";
+        }
+
+        function member() {
+            username.focus();
+            username.onkeyup = "";
+            username.placeholder = "Username";
+            username.style = "border-radius:3px 3px 0px 0px;"
+            password.type = "password";
+            infologin.innerHTML = "Masukkan Username dan Password<br>kemudian klik login.";
+        }
+    </script>
+
+
+</body>
+</html>
