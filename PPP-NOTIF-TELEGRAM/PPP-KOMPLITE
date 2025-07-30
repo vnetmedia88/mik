@@ -1,3 +1,4 @@
+#SCRIP-UP
 :log warning "PPPOE $user login kembali.";
 
 :local datetime "ðŸ“…-Tanggal: $[/system clock get date] %0Aâ°-Jam: $[/system clock get time]";
@@ -38,3 +39,40 @@
 /tool fetch http-method=post \
     http-data="text=#ï¸âƒ£BINET-WIFI MONITOR#ï¸âƒ£%0A=======================%0Aâœ…*ONLINE%0A*$datetime%0A=======================%0Aâž–INFO PELANGGANâž–%0AðŸ™‹â€â™‚ï¸ *Nama:* $nama%0AðŸ†” *IP Address:* $ips%0AðŸ“¡ *Paket:* $profile%0A*ðŸ“… Tgl Pasang:* $tglpasang%0A*ðŸ“² No HP:* $nohp%0AðŸ“Œ *Alamat:* $alamat%0AðŸ“ *Koordinat:* [Klik di sini](https://maps.google.com/?q=$koordinat)%0A============================%0A*Total Pelanggan:* $secretCount%0A*Total Aktif:* $activeCount%0A*Modem Mati:* $terputus%0A============================%0A*User Terputus:*%0A$status" \
     url="https://api.telegram.org/botTOKEN-KAMU/SendMessage?chat_id=CHAT-ID/CHAT-GROUP&parse_mode=markdown" mode=https keep-result=no http-header-field="Content-Type: application/x-www-form-urlencoded; charset=UTF-8, User-Agent: Firefox";
+
+
+
+
+
+
+
+#SCRIP DOWN
+:log warning "PPPOE $user log OFF.";
+
+:local nama "$user";
+:local secret [/ppp secret print count];
+:local status value="";
+:foreach pppuser in=[/ppp secret find ] do={
+ :local pppname [/ppp secret get $pppuser name]
+ :do {
+  :local tmp [/ppp active get [find where name="$pppname"]]  
+ } on-error={
+  ##:put $pppname
+  :set status value=($status.$pppname.",%0A")
+ }
+};
+
+:local active [/ppp active print count]; 
+:local terputus ($secret - $active)
+/tool fetch http-method=post http-data="text=\E2\9D\8C *OFFLINE*
+\F0\9F\91\A5 Nama  : *$nama*
+
+User Terputus *($terputus)*:
+*$status*
+
+__
+**" url="https://api.telegram.org/TOKEN-KAMU/SendMessage?chat_id=CHATID-KAMU&parse_mode=markdown" mode=https keep-result=no http-header-field="Content-Type: application/x-www-form-urlencoded; charset=UTF-8, User-Agent: Firefox";
+
+
+
+
