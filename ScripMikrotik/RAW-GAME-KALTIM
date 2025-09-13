@@ -1,8 +1,20 @@
-# sep/10/2025 12:30:33 by RouterOS 6.49.17
-# software id = QPXD-EKX0
-#
-# model = RB750Gr3
-# serial number = HHD0ACTCE2H
+/ip firewall mangle
+add action=mark-connection chain=forward comment=GAME dst-address-list=GAME \
+    new-connection-mark=GAME-conn passthrough=yes src-address-list=Lokal
+add action=mark-packet chain=forward connection-mark=GAME-conn \
+    new-packet-mark=GAME-Up passthrough=no src-address-list=Lokal
+add action=mark-packet chain=forward connection-mark=GAME-conn \
+    dst-address-list=Lokal new-packet-mark=GAME-Down passthrough=no
+add action=change-ttl chain=postrouting new-ttl=set:1 out-interface=\
+    bridge-hotspot passthrough=no
+add action=change-ttl chain=postrouting new-ttl=set:1 out-interface=\
+    bridge-hotspot passthrough=no
+
+
+
+
+
+
 /ip firewall raw
 add action=add-dst-to-address-list address-list=GAME address-list-timeout=1d \
     chain=prerouting comment="Clash Of Clans - Mobile" dst-address-list=\
