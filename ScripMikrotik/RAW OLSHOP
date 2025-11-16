@@ -1,0 +1,25 @@
+/ip firewall raw
+add action=add-dst-to-address-list address-list=MARKETPLACE \
+    address-list-timeout=1d chain=prerouting comment=MARKETPLACE content=\
+    tokopedia.com dst-address-list=!lokal src-address-list=lokal
+
+add action=add-dst-to-address-list address-list=MARKETPLACE \
+    address-list-timeout=1d chain=prerouting content=tokopedia.net \
+    dst-address-list=!lokal src-address-list=lokal
+
+add action=add-dst-to-address-list address-list=MARKETPLACE \
+    address-list-timeout=1d chain=prerouting content=shopee.co.id \
+    dst-address-list=!lokal src-address-list=lokal
+
+add action=add-dst-to-address-list address-list=MARKETPLACE \
+    address-list-timeout=1d chain=prerouting content=bukalapak.com \
+    dst-address-list=!lokal src-address-list=lokal
+
+add action=add-dst-to-address-list address-list=MARKETPLACE \
+    address-list-timeout=1d chain=prerouting content=lazada.co.id \
+    dst-address-list=!lokal src-address-list=lokal
+
+add action=add-dst-to-address-list address-list=MARKETPLACE \
+    address-list-timeout=1d chain=prerouting content=blibli.com \
+    dst-address-list=!lokal src-address-list=lokal
+
